@@ -1,0 +1,12 @@
+{
+  "logoSource": "/images/logo.svg",
+  "logoAlt": "Logo",
+  "navData": [
+    {
+      "name": "Home",
+      "path": "/",
+      "children": []
+    }
+  ],
+  "buttonSections": []
+}
