@@ -1,40 +1,30 @@
-name: Test
+name: Practica workshop
 
 on:
   push:
     branches:
       - main
+      - fin
+
   pull_request:
     branches:
       - main
 
 jobs:
-  lint:
-    name: Lint
-    runs-on: ${{matrix.os}}
-    defaults:
-      run:
-        shell: bash
-    strategy:
-      matrix:
-        include:
-          - build: linux
-            os: ubuntu-24.04
+  Test:
+    name: mi primer workflow test
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 1
-      - uses: actions/setup-node@v4
-        with:
-          cache: npm
-          node-version-file: .nvmrc
+          node-version: '20'
 
-      - name: Install
-        run: npm ci
+      - name: Install dependencies
+        run: npm install
 
-      - name: Check
-        run: npm run check
-
-      - name: Test
+      - name: Run tests
         run: npm run test:ci
